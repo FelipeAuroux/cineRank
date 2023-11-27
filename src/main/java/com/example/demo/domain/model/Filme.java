@@ -28,7 +28,6 @@ public class Filme {
     private String diretor;
     @Enumerated @NotNull
     private Genero genero;
-    //private List<Atores> atores;
     @NotBlank @Size(max = 280)
     private String sinopse;
     private Date lancamento;
@@ -38,5 +37,17 @@ public class Filme {
     private int classificacao;
     @NotBlank
     private String distribuidora;
+
+    @ManyToMany
+    @JoinTable(
+            name = "filme_ator",
+            joinColumns = @JoinColumn(name = "filme_id"),
+            inverseJoinColumns = @JoinColumn(name = "atores_id")
+    )
+    private List<Atores> atores;
+
+    @ManyToOne
+    @JoinColumn(name = "lista_id")
+    private Lista lista;
 
 }
