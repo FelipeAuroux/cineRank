@@ -42,9 +42,9 @@ public class Filme {
     @JoinTable(
             name = "filme_ator",
             joinColumns = @JoinColumn(name = "filme_id"),
-            inverseJoinColumns = @JoinColumn(name = "atores_id")
+            inverseJoinColumns = @JoinColumn(name = "ator_id")
     )
-    private List<Atores> atores;
+    private List<Ator> atores;
 
     @ManyToOne
     @JoinColumn(name = "lista_id")

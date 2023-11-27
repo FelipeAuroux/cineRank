@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Atores {
+public class Ator {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAtor;
