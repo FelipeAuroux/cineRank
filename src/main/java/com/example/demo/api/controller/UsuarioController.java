@@ -1,6 +1,6 @@
 package com.example.demo.api.controller;
 
-import com.example.demo.api.dto.UsuarioInputDTO;
+import com.example.demo.api.dto.UsuarioRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -15,7 +15,7 @@ public class UsuarioController {
 
     @Operation(description = "Endpoint de cadastrar novo usuário", method = "POST")
     @PostMapping("/novo")
-    public ResponseEntity<?> novo(@RequestBody @Valid UsuarioInputDTO usuarioInputDTO) {
+    public ResponseEntity<?> novo(@RequestBody @Valid UsuarioRequestDTO usuarioRequestDTO) {
 
         return ResponseEntity.ok("Funcionando");
     }
