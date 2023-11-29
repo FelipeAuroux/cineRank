@@ -38,6 +38,10 @@ public class Filme {
     @NotBlank
     private String distribuidora;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     @ManyToMany
     @JoinTable(
             name = "filme_ator",

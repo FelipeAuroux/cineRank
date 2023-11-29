@@ -26,7 +26,7 @@ public class FilmeController {
             @ApiResponse(description = "Filme cadastrado com sucesso!", responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = FilmeResponseDTO.class))),
             @ApiResponse(description = "Erro ao cadastrar filme!", responseCode = "500", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MensagemResponse.class)))
     })
-    public ResponseEntity novo(@RequestBody @Valid FilmeRequestDTO filmeRequestDTO) {
+    public ResponseEntity criarNovoFilme(@RequestBody @Valid FilmeRequestDTO filmeRequestDTO) {
         return ResponseEntity.ok("Tudo certo");
     }
 

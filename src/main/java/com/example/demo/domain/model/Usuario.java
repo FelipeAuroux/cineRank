@@ -13,6 +13,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -40,5 +41,8 @@ public class Usuario {
     private String cpf;
     @Enumerated @NotNull
     private Roles role;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Filme> filmes;
 
 }

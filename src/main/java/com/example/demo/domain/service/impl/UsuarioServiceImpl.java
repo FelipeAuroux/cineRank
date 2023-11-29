@@ -32,19 +32,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario atualizarUsuarioPorId(Usuario usuario){
-        if(repository.findById(usuario.getIdUsuario()).isPresent()){
+    public Usuario atualizarUsuarioPorId(Usuario usuario) {
+        if (repository.findById(usuario.getIdUsuario()).isPresent()) {
             // Existe o usuario para atualizar
             return repository.save(usuario);
-        }else{
+        } else {
             // Não existe o usuário para atualizar
-            throw new RegrasDeNegocioException("Não existe usuário com id "+usuario.getIdUsuario());
+            throw new RegrasDeNegocioException("Não existe usuário com id " + usuario.getIdUsuario());
         }
     }
 
     @Override
     public Usuario buscarUsuarioPorId(Long idUsuario) {
-        return repository.findById(idUsuario).orElseThrow(() -> new RegrasDeNegocioException("Não existe usuário com id "+idUsuario));
+        return repository.findById(idUsuario).orElseThrow(() -> new RegrasDeNegocioException("Não existe usuário com id " + idUsuario));
     }
 
     @Override
