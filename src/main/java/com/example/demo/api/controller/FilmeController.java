@@ -1,7 +1,7 @@
 package com.example.demo.api.controller;
 
-import com.example.demo.api.dto.FilmeRequestDTO;
-import com.example.demo.api.dto.FilmeResponseDTO;
+import com.example.demo.api.dto.filme.FilmeRequestDTO;
+import com.example.demo.api.dto.filme.FilmeResponseDTO;
 import com.example.demo.api.message.MensagemResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

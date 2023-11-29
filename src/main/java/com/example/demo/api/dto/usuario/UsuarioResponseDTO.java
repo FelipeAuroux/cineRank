@@ -1,4 +1,4 @@
-package com.example.demo.api.dto;
+package com.example.demo.api.dto.usuario;
 
 import com.example.demo.domain.enums.Roles;
 import jakarta.persistence.Enumerated;
@@ -20,6 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class UsuarioResponseDTO {
 
+    private Long idUsuario;
     private String nome;
     private String email;
     private String usuario;

@@ -1,4 +1,4 @@
-package com.example.demo.api.dto;
+package com.example.demo.api.dto.login;
 
 import com.example.demo.utils.RespostaDeAtributoPersonalizada;
 import jakarta.validation.constraints.NotBlank;

@@ -7,6 +7,8 @@ import com.example.demo.domain.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
@@ -14,7 +16,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     private UsuarioRepository repository;
 
     @Override
-    public Usuario salvar(Usuario usuario) {
+    public Usuario criarNovoUsuario(Usuario usuario) {
         // Verificar se já existe esse usuário, se não existir então salva, caso contrário gera mensagem de aviso
         if (repository.findByCpf(usuario.getCpf()).isPresent()) {
             // Existe
@@ -22,6 +24,32 @@ public class UsuarioServiceImpl implements UsuarioService {
         } else {
             return repository.save(usuario);
         }
+    }
+
+    @Override
+    public void deletarUsuarioPorId(Long idUsuario) {
+        repository.deleteById(idUsuario);
+    }
+
+    @Override
+    public Usuario atualizarUsuarioPorId(Usuario usuario){
+        if(repository.findById(usuario.getIdUsuario()).isPresent()){
+            // Existe o usuario para atualizar
+            return repository.save(usuario);
+        }else{
+            // Não existe o usuário para atualizar
+            throw new RegrasDeNegocioException("Não existe usuário com id "+usuario.getIdUsuario());
+        }
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorId(Long idUsuario) {
+        return repository.findById(idUsuario).orElseThrow(() -> new RegrasDeNegocioException("Não existe usuário com id "+idUsuario));
+    }
+
+    @Override
+    public List<Usuario> listarTodosUsuarios() {
+        return repository.findAll();
     }
 
 }

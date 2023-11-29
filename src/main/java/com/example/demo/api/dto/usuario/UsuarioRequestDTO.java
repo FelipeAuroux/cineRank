@@ -1,4 +1,4 @@
-package com.example.demo.api.dto;
+package com.example.demo.api.dto.usuario;
 
 import com.example.demo.domain.enums.Roles;
 import jakarta.persistence.Enumerated;
