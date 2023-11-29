@@ -1,6 +1,7 @@
 package com.example.demo.api.dto.filme;
 
 import com.example.demo.domain.enums.Genero;
+import com.example.demo.domain.model.Usuario;
 import com.example.demo.utils.RespostaDeAtributoPersonalizada;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -45,5 +46,8 @@ public class FilmeRequestDTO {
 
     @NotBlank(message = RespostaDeAtributoPersonalizada.FILME_ATR_DISTRIBUIDORA_VAZIO)
     private String distribuidora;
+
+    @NotNull
+    private Usuario usuario;
 
 }

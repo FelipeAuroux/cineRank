@@ -1,6 +1,7 @@
 package com.example.demo.api.dto.usuario;
 
 import com.example.demo.domain.enums.Roles;
+import com.example.demo.domain.model.Filme;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -13,6 +14,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
