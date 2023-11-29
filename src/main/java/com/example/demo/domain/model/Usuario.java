@@ -26,7 +26,7 @@ public class Usuario {
     private Long idUsuario;
     @NotBlank
     private String nome;
-    @Email
+    @Email @NotBlank
     private String email;
     @NotBlank @Size(min = 6, max = 20)
     private String usuario;
@@ -36,8 +36,8 @@ public class Usuario {
     private Date dataRegistro;
     @NotNull
     private Date dataNascimento;
-    @CPF
-    private int cpf;
+    @CPF @Column(unique = true)
+    private String cpf;
     @Enumerated @NotNull
     private Roles role;
 

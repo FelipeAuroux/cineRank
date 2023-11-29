@@ -2,9 +2,6 @@ package com.example.demo.api.dto;
 
 import com.example.demo.domain.enums.Roles;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,24 +18,13 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioRequestDTO {
+public class UsuarioResponseDTO {
 
-    @NotBlank
     private String nome;
-    @Email @NotBlank
     private String email;
-    @NotBlank @Size(min = 6, max = 20)
     private String usuario;
-    @NotBlank @Size(min = 8)
-    private String senha;
-    @NotNull
     private Date dataRegistro = new Date();
-    @NotNull
     private Date dataNascimento;
-    @CPF @NotBlank
-    private String cpf;
-    @Enumerated
-    @NotNull
     private Roles role = Roles.ROLE_USER;
 
 }
