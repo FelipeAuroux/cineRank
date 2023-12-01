@@ -1,6 +1,7 @@
 package com.example.demo.domain.model;
 
 import com.example.demo.domain.enums.Genero;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +39,10 @@ public class Filme {
     @NotBlank
     private String distribuidora;
 
+    @OneToMany(mappedBy = "filme")
+    private List<Comentario> comentarios;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -50,6 +55,7 @@ public class Filme {
     )
     private List<Ator> atores;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "lista_id")
     private Lista lista;

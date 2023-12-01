@@ -1,7 +1,7 @@
-package com.example.demo.domain.model;
+package com.example.demo.api.dto.comentario;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import com.example.demo.domain.model.Filme;
+import com.example.demo.domain.model.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -16,26 +16,15 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Comentario {
+public class ComentarioRequestDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idComentario;
     @NotBlank
     @Size(max = 280)
     private String texto;
     @NotNull
-    private Date dataHora;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "filme_id")
+    private Date dataHora = new Date();
+    @NotNull
     private Filme filme;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @NotNull
     private Usuario usuario;
-
 }

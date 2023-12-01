@@ -45,4 +45,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Filme> filmes;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Comentario> comentarios;
+
 }

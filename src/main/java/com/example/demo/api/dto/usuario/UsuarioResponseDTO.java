@@ -29,5 +29,6 @@ public class UsuarioResponseDTO {
     private Date dataRegistro = new Date();
     private Date dataNascimento;
     private Roles role = Roles.ROLE_USER;
+    private List<Filme> filmes;
 
 }
