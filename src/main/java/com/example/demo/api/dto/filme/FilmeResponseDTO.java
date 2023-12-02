@@ -1,10 +1,10 @@
 package com.example.demo.api.dto.filme;
 
+import com.example.demo.api.dto.ator.AtorResponseDTO;
+import com.example.demo.api.dto.avaliacao.AvaliacaoResponseDTO;
+import com.example.demo.api.dto.comentario.ComentarioResponseDTO;
 import com.example.demo.domain.enums.Genero;
 
-import com.example.demo.domain.model.Ator;
-import com.example.demo.domain.model.Comentario;
-import com.example.demo.domain.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,10 @@ public class FilmeResponseDTO {
     private int duracao;
     private int classificacao;
     private String distribuidora;
-    private List<Comentario> comentarios;
-    private List<Ator> atores;
+
+    // Relacionamentos
+    private List<AvaliacaoResponseDTO> avaliacoes;
+    private List<ComentarioResponseDTO> comentarios;
+    private List<AtorResponseDTO> atores;
 
 }

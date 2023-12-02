@@ -47,6 +47,8 @@ public class FilmeRequestDTO {
     @NotBlank(message = RespostaDeAtributoPersonalizada.FILME_ATR_DISTRIBUIDORA_VAZIO)
     private String distribuidora;
 
+    // Informar json aninhado de usuario com id para cadastrar filme
+
     @NotNull
     private Usuario usuario;
 

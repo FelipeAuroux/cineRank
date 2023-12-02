@@ -2,6 +2,7 @@ package com.example.demo.domain.model;
 
 import com.example.demo.domain.enums.Roles;
 import com.example.demo.utils.RespostaDeAtributoPersonalizada;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -53,19 +54,29 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario")
     private Endereco endereco;
 
+    @OneToOne(mappedBy = "usuario")
+    private Lista lista;
+
+    // Relaciona mas não retorna no json
+
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Filme> filmes;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Avaliacao> avaliacoes;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Comentario> comentarios;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Sessao> sessoes;
 
-    @OneToOne(mappedBy = "usuario")
-    private Lista lista;
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario") // usuário admin cadastra
+    private List<Cinema> cinemas;
 
 }

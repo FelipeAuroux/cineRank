@@ -2,7 +2,6 @@ package com.example.demo.domain.service.impl;
 
 import com.example.demo.domain.domainException.RegrasDeNegocioException;
 import com.example.demo.domain.model.Filme;
-import com.example.demo.domain.model.Usuario;
 import com.example.demo.domain.repository.FilmeRepository;
 import com.example.demo.domain.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.example.demo.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -33,14 +34,6 @@ public class Sessao {
 
     @ManyToMany
     @JoinTable(
-            name = "sessao_usuario",
-            joinColumns = @JoinColumn(name = "sessao_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id")
-    )
-    private List<Usuario> usuarios;
-
-    @ManyToMany
-    @JoinTable(
             name = "sessao_filme",
             joinColumns = @JoinColumn(name = "sessao_id"),
             inverseJoinColumns = @JoinColumn(name = "filme_id")
@@ -55,5 +48,15 @@ public class Sessao {
     )
     private List<Cinema> cinemas;
 
+    // Relaciona mas não retorna no json
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "sessao_usuario",
+            joinColumns = @JoinColumn(name = "sessao_id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id")
+    )
+    private List<Usuario> usuarios;
 
 }

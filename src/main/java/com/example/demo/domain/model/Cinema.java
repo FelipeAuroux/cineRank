@@ -1,5 +1,6 @@
 package com.example.demo.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +19,8 @@ import java.util.List;
 @Entity
 public class Cinema {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCinema;
     @NotBlank
     private String nome;
@@ -35,5 +37,12 @@ public class Cinema {
 
     @ManyToMany(mappedBy = "cinemas")
     private List<Sessao> sessoes;
+
+    // Relaciona mas não retorna no json
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 }

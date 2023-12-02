@@ -42,20 +42,10 @@ public class Filme {
     // Relacionamentos
 
     @OneToMany(mappedBy = "filme")
-    private List<Comentario> comentarios;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    @OneToMany(mappedBy = "filme")
     private List<Avaliacao> avaliacoes;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "lista_id")
-    private Lista lista;
+    @OneToMany(mappedBy = "filme")
+    private List<Comentario> comentarios;
 
     @ManyToMany
     @JoinTable(
@@ -65,9 +55,20 @@ public class Filme {
     )
     private List<Ator> atores;
 
+    // Relaciona mas não retorna no json
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "lista_id")
+    private Lista lista;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "filmes")
     private List<Sessao> sessoes;
-
-
 
 }
