@@ -31,7 +31,7 @@ public class Cinema {
     @NotNull
     private int salas;
     @CNPJ
-    private int cnpj;
+    private String cnpj;
 
     // Relacionamentos
 

@@ -1,28 +1,27 @@
 package com.example.demo.api.dto.cinema;
 
-import com.example.demo.api.dto.sessao.SessaoResponseDTO;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CinemaResponseDTO {
+public class CinemaRequestDTO {
 
-    private Long idCinema;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String endereco;
+    @NotBlank
     private String funcionamento;
+    @NotNull
     private int salas;
+    @CNPJ
     private String cnpj;
-
-    // Relacionamentos
-    private List<SessaoResponseDTO> sessoes;
-
 }

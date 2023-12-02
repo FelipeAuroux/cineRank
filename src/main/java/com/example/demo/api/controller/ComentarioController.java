@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -49,8 +50,8 @@ public class ComentarioController {
             @ApiResponse(description = "Comentário foi deletado com sucesso!", responseCode = "204", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
             @ApiResponse(description = "Erro ao deletar comentário do filme!", responseCode = "400", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
     })
-    @GetMapping("/deletar-comentario/{idComentario}")
-    public ResponseEntity<?> deletarComentarioDoFilme(@PathVariable("idComentario") @Valid Long idComentario) {
+    @DeleteMapping("/deletar-comentario/{idComentario}")
+    public ResponseEntity<?> deletarComentarioDoFilme(@PathVariable("idComentario") @Valid @NotNull(message = "Informe o id do comentário!") Long idComentario) {
         service.deletarComentarioPorId(idComentario);
         return ResponseEntity.noContent().build();
     }

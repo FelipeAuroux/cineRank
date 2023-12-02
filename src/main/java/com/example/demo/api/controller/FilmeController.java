@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -52,7 +53,7 @@ public class FilmeController {
             @ApiResponse(description = "Filme deletado com sucesso!", responseCode = "204", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
             @ApiResponse(description = "Erro ao deletar filme!", responseCode = "400", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
     })
-    public ResponseEntity<?> deletarFilmePorId(@PathVariable("idFilme") @Valid Long idFilme) {
+    public ResponseEntity<?> deletarFilmePorId(@PathVariable("idFilme") @Valid @NotNull(message = "Informe o id do filme!") Long idFilme) {
         service.deletarFilmePorId(idFilme);
         return ResponseEntity.noContent().build();
     }

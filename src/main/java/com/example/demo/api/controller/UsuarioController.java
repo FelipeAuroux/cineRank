@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -52,7 +53,7 @@ public class UsuarioController {
             @ApiResponse(description = "Erro ao deletar usuário!", responseCode = "400", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
     })
     @DeleteMapping("/deletar/{idUsuario}")
-    public ResponseEntity<?> deletarUsuarioPorId(@PathVariable("idUsuario") @Valid Long idUsuario) {
+    public ResponseEntity<?> deletarUsuarioPorId(@PathVariable("idUsuario") @Valid @NotNull(message = "Informe o id do usuário!") Long idUsuario) {
         service.deletarUsuarioPorId(idUsuario);
         return ResponseEntity.noContent().build();
     }
@@ -62,7 +63,7 @@ public class UsuarioController {
             @ApiResponse(description = "Erro ao encontrar usuário!", responseCode = "400", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
     })
     @GetMapping("/buscar/{idUsuario}")
-    public ResponseEntity<?> buscarUsuarioPorId(@PathVariable("idUsuario") @Valid Long idUsuario) {
+    public ResponseEntity<?> buscarUsuarioPorId(@PathVariable("idUsuario") @Valid @NotNull(message = "Informe o id do usuário!") Long idUsuario) {
         return ResponseEntity.ok(UsuarioMapper.converterUsuarioEntidadeParaUsuarioResponseDTO(service.buscarUsuarioPorId(idUsuario)));
     }
 
