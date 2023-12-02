@@ -25,6 +25,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService service;
 
+    // USER
     @Operation(summary = "Cadastra usuários", description = "Realiza cadastros de novos usuários", method = "POST", responses = {
             @ApiResponse(description = "Usuário cadastrado com sucesso!", responseCode = "201", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = UsuarioResponseDTO.class))),
             @ApiResponse(description = "Erro ao cadastrar usuário!", responseCode = "400", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
@@ -34,6 +35,8 @@ public class UsuarioController {
         UsuarioResponseDTO usuarioResponseDTO = UsuarioMapper.converterUsuarioEntidadeParaUsuarioResponseDTO(service.criarNovoUsuario(UsuarioMapper.converterUsuarioRequestDTOEmUsuarioEntidade(usuarioRequestDTO)));
         return new ResponseEntity<UsuarioResponseDTO>(usuarioResponseDTO, HttpStatus.CREATED);
     }
+
+    // ADMIN
 
     @Operation(summary = "Atualiza usuários", description = "Realiza a atualização de um usuário", method = "PUT", responses = {
             @ApiResponse(description = "Usuário atualizado com sucesso!", responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = UsuarioResponseDTO.class))),

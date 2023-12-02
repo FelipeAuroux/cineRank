@@ -1,5 +1,6 @@
 package com.example.demo.domain.service.impl;
 
+import com.example.demo.domain.domainException.RegrasDeNegocioException;
 import com.example.demo.domain.model.Comentario;
 import com.example.demo.domain.repository.ComentarioRepository;
 import com.example.demo.domain.service.ComentarioService;
@@ -22,5 +23,21 @@ public class ComentarioServiceImpl implements ComentarioService {
     @Override
     public List<Comentario> listarTodosComentarios() {
         return repository.findAll();
+    }
+
+    @Override
+    public Comentario buscarComentarioPorId(Long idComentario) {
+        return repository.findById(idComentario).orElseThrow(() -> new RegrasDeNegocioException("Não existe comentário com id " + idComentario + "!"));
+    }
+
+    @Override
+    public void deletarComentarioPorId(Long idComentario) {
+        try {
+            buscarComentarioPorId(idComentario);
+            repository.deleteById(idComentario);
+        } catch (RegrasDeNegocioException regrasDeNegocioException) {
+            throw new RegrasDeNegocioException("Não existe comentário com id " + idComentario + " para ser deletado!");
+        }
+
     }
 }

@@ -25,14 +25,7 @@ public class FilmeController {
     @Autowired
     private FilmeService service;
 
-    @PostMapping("/novo")
-    @Operation(summary = "Cadastra filmes", description = "Salva um novo filme", method = "POST", responses = {
-            @ApiResponse(description = "Filme cadastrado com sucesso!", responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = FilmeResponseDTO.class))),
-            @ApiResponse(description = "Erro ao cadastrar filme!", responseCode = "500", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MensagemResponse.class)))
-    })
-    public ResponseEntity<?> criarNovoFilme(@RequestBody @Valid FilmeRequestDTO filmeRequestDTO) {
-        return new ResponseEntity<FilmeResponseDTO>(FilmeMapper.converterFilmeEntidadeParaFilmeResponseDTO(service.adicionarNovoFilme(FilmeMapper.converterFilmeRequestDTOParaFilmeEntidade(filmeRequestDTO))), HttpStatus.CREATED);
-    }
+    // USER
 
     @GetMapping("/listar")
     @Operation(summary = "Lista filmes", description = "Lista todos os filmes cadastrados", method = "GET", responses = {
@@ -41,6 +34,17 @@ public class FilmeController {
     })
     public ResponseEntity<?> listarFilmes() {
         return ResponseEntity.ok(FilmeMapper.converterListaDeFilmeEntidadeParaListaDeFilmeResponseDTO(service.listarTodosFilmes()));
+    }
+
+    // ADMIN
+
+    @PostMapping("/novo")
+    @Operation(summary = "Cadastra filmes", description = "Salva um novo filme", method = "POST", responses = {
+            @ApiResponse(description = "Filme cadastrado com sucesso!", responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = FilmeResponseDTO.class))),
+            @ApiResponse(description = "Erro ao cadastrar filme!", responseCode = "500", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MensagemResponse.class)))
+    })
+    public ResponseEntity<?> criarNovoFilme(@RequestBody @Valid FilmeRequestDTO filmeRequestDTO) {
+        return new ResponseEntity<FilmeResponseDTO>(FilmeMapper.converterFilmeEntidadeParaFilmeResponseDTO(service.adicionarNovoFilme(FilmeMapper.converterFilmeRequestDTOParaFilmeEntidade(filmeRequestDTO))), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deletar/{idFilme}")
