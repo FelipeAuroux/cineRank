@@ -39,6 +39,8 @@ public class Filme {
     @NotBlank
     private String distribuidora;
 
+    // Relacionamentos
+
     @OneToMany(mappedBy = "filme")
     private List<Comentario> comentarios;
 
@@ -46,6 +48,14 @@ public class Filme {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "filme")
+    private List<Avaliacao> avaliacoes;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "lista_id")
+    private Lista lista;
 
     @ManyToMany
     @JoinTable(
@@ -55,9 +65,9 @@ public class Filme {
     )
     private List<Ator> atores;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "lista_id")
-    private Lista lista;
+    @ManyToMany(mappedBy = "filmes")
+    private List<Sessao> sessoes;
+
+
 
 }

@@ -28,6 +28,8 @@ public class Comentario {
     @NotNull
     private Date dataHora;
 
+    // Relacionamentos
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "filme_id")

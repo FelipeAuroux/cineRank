@@ -1,9 +1,6 @@
 package com.example.demo.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -11,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +30,10 @@ public class Cinema {
     private int salas;
     @CNPJ
     private int cnpj;
+
+    // Relacionamentos
+
+    @ManyToMany(mappedBy = "cinemas")
+    private List<Sessao> sessoes;
 
 }

@@ -1,9 +1,6 @@
 package com.example.demo.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -32,4 +29,10 @@ public class Endereco {
     private String cidade;
     @NotBlank @Size(min = 2, max = 2)
     private String uf;
+
+    // Relacionamentos
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

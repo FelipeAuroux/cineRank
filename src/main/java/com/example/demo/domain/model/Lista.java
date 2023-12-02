@@ -23,7 +23,13 @@ public class Lista {
     @NotNull
     private Date adicao;
 
+    // Relacionamentos
+
     @OneToMany(mappedBy = "lista")
     private List<Filme> filmes;
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 }
