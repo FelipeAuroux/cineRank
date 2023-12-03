@@ -40,6 +40,7 @@ public class Sessao {
     )
     private List<Filme> filmes;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "sessao_cinema",
