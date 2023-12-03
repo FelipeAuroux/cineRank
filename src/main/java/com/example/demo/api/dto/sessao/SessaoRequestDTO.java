@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class SessaoRequestDTO {
 
+    private Long idSessao;
     @NotNull
     private Date horario;
     @NotNull
