@@ -1,6 +1,8 @@
 package com.example.demo.api.dto.usuario;
 
+import com.example.demo.api.dto.endereco.EnderecoRequestDTO;
 import com.example.demo.domain.enums.Roles;
+import com.example.demo.domain.model.Endereco;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,5 +43,6 @@ public class UsuarioRequestDTO {
     @Enumerated
     @NotNull
     private Roles role = Roles.ROLE_USER;
+    private EnderecoRequestDTO endereco;
 
 }

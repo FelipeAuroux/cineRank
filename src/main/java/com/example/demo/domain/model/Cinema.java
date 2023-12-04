@@ -1,5 +1,6 @@
 package com.example.demo.domain.model;
 
+import com.example.demo.utils.RespostaDeAtributoPersonalizada;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
