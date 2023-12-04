@@ -23,6 +23,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class UsuarioRequestDTO {
 
+    private Long idUsuario;
     @NotBlank
     private String nome;
     @Email @NotBlank

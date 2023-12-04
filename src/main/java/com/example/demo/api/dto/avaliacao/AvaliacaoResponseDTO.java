@@ -1,5 +1,6 @@
 package com.example.demo.api.dto.avaliacao;
 
+import com.example.demo.api.dto.usuario.UsuarioResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,10 +16,8 @@ public class AvaliacaoResponseDTO {
 
     private Long idAvaliacao;
     private int pontuacao;
-    private String opiniao;
     private Date dataHora;
 
     // Relacionamentos
-//    private UsuarioResponseDTO usuario;
-//    private FilmeResponseDTO filme;
+    private UsuarioResponseDTO usuario;
 }

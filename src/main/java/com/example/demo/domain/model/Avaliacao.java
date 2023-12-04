@@ -23,8 +23,6 @@ public class Avaliacao {
     private Long idAvaliacao;
     @NotNull
     private int pontuacao;
-    @NotBlank
-    private String opiniao;
     @NotNull
     private Date dataHora;
 

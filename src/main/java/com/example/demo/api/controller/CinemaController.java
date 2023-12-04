@@ -37,7 +37,7 @@ public class CinemaController {
 
     // ADMIN
 
-    @Operation(summary = "Cadastra cinema", description = "Realiza o cadastro de cinema", method = "GET", responses = {
+    @Operation(summary = "Cadastra cinema", description = "Realiza o cadastro de cinema", method = "POST", responses = {
             @ApiResponse(description = "Cadastro realizado com sucesso!", responseCode = "201", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = CinemaResponseDTO.class))),
             @ApiResponse(description = "Não foi possível cadastrar o cinema!", responseCode = "400", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
     })

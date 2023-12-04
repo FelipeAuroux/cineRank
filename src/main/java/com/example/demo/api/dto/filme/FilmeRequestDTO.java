@@ -21,6 +21,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class FilmeRequestDTO {
 
+
+    private Long idFilme;
+
     @NotBlank(message = RespostaDeAtributoPersonalizada.FILME_ATR_TITULO_VAZIO)
     private String titulo;
 
