@@ -51,7 +51,7 @@ public class Usuario {
 
     // Relacionamentos
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "usuario")
     private Endereco endereco;
 
     @OneToOne(mappedBy = "usuario")

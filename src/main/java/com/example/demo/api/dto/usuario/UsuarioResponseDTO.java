@@ -20,7 +20,7 @@ public class UsuarioResponseDTO {
     private String nome;
     private String email;
     private String usuario;
-    private Date dataRegistro = new Date();
+    private Date dataRegistro;
     private Date dataNascimento;
     private Roles role = Roles.ROLE_USER;
 

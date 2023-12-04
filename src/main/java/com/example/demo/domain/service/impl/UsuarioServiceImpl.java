@@ -1,7 +1,9 @@
 package com.example.demo.domain.service.impl;
 
 import com.example.demo.domain.domainException.RegrasDeNegocioException;
+import com.example.demo.domain.model.Endereco;
 import com.example.demo.domain.model.Usuario;
+import com.example.demo.domain.repository.EnderecoRepository;
 import com.example.demo.domain.repository.UsuarioRepository;
 import com.example.demo.domain.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository repository;
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     @Transactional(readOnly = false)
     @Override
@@ -24,7 +28,13 @@ public class UsuarioServiceImpl implements UsuarioService {
             // Existe
             throw new RegrasDeNegocioException("O usuário com cpf " + usuario.getCpf() + " já está cadastrado em nosso sistema!");
         } else {
-            return repository.save(usuario);
+            Endereco endereco = usuario.getEndereco();
+            usuario.setEndereco(null);
+            Usuario usuarioSalvo = repository.save(usuario);
+            endereco.setUsuario(usuarioSalvo);
+            Endereco enderecoSalvo = enderecoRepository.save(endereco);
+            usuarioSalvo.setEndereco(enderecoSalvo);
+            return usuarioSalvo;
         }
     }
 
