@@ -2,6 +2,7 @@ package com.example.demo.api.dto.cinema;
 
 import com.example.demo.api.dto.sessao.SessaoRequestDTO;
 import com.example.demo.api.dto.sessao.SessaoResponseDTO;
+import com.example.demo.utils.RespostaDeAtributoPersonalizada;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -18,15 +19,16 @@ import java.util.List;
 @NoArgsConstructor
 public class CinemaRequestDTO {
 
-    @NotBlank
+    @NotBlank(message = RespostaDeAtributoPersonalizada.CINEMA_ATR_NOME_VAZIO)
     private String nome;
-    @NotBlank
+    @NotBlank(message = RespostaDeAtributoPersonalizada.CINEMA_ATR_ENDERECO_VAZIO)
     private String endereco;
-    @NotBlank
+    @NotBlank(message = RespostaDeAtributoPersonalizada.CINEMA_ATR_FUNCIONAMENTO_VAZIO)
     private String funcionamento;
-    @NotNull
+    @NotNull(message = RespostaDeAtributoPersonalizada.CINEMA_ATR_SALAS_VAZIO)
     private int salas;
-    @CNPJ
+    @CNPJ(message = RespostaDeAtributoPersonalizada.CINEMA_ATR_CNPJ_VAZIO)
+
     private String cnpj;
 
     private List<SessaoRequestDTO> sessoes;

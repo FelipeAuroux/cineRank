@@ -55,8 +55,6 @@ public class Filme {
     )
     private List<Ator> atores;
 
-    // Relaciona mas não retorna no json
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "usuario_id")

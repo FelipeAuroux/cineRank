@@ -2,6 +2,7 @@ package com.example.demo.api.dto.comentario;
 
 import com.example.demo.domain.model.Filme;
 import com.example.demo.domain.model.Usuario;
+import com.example.demo.utils.RespostaDeAtributoPersonalizada;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,7 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class ComentarioRequestDTO {
 
-    @NotBlank
+    @NotBlank (message = RespostaDeAtributoPersonalizada.COMENTARIO_ATR_TEXTO_VAZIO)
     @Size(max = 280)
     private String texto;
     @NotNull

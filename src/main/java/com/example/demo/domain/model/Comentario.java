@@ -34,8 +34,6 @@ public class Comentario {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    // Relaciona mas não retorna no json
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "filme_id")

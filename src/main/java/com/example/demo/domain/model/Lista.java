@@ -29,8 +29,6 @@ public class Lista {
     @OneToMany(mappedBy = "lista")
     private List<Filme> filmes;
 
-    // Relaciona mas não retorna no json
-
     @JsonIgnore
     @OneToOne
     @JoinColumn(name = "usuario_id")

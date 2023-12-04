@@ -2,6 +2,7 @@ package com.example.demo.api.dto.avaliacao;
 
 import com.example.demo.api.dto.filme.FilmeRequestDTO;
 import com.example.demo.api.dto.usuario.UsuarioRequestDTO;
+import com.example.demo.utils.RespostaDeAtributoPersonalizada;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class AvaliacaoRequestDTO {
 
-    @NotNull
+    @NotNull (message = RespostaDeAtributoPersonalizada.AVALIACAO_ATR_PONTUACAO_VAZIO)
     private int pontuacao;
     private Date dataHora = new Date();
 

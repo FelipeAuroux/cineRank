@@ -49,8 +49,6 @@ public class Sessao {
     )
     private List<Cinema> cinemas;
 
-    // Relaciona mas não retorna no json
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(
