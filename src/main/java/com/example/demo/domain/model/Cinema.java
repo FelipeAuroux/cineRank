@@ -38,8 +38,6 @@ public class Cinema {
     @ManyToMany(mappedBy = "cinemas")
     private List<Sessao> sessoes;
 
-    // Relaciona mas não retorna no json
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "usuario_id")

@@ -27,4 +27,20 @@ public class RespostaDeAtributoPersonalizada {
     public static final String USUARIO_ATR_CPF_VAZIO = "O CPF não pode estar branco!";
     public static final String USUARIO_ATR_CPF_TAMANHO = "O CPF deve conter 14 caracteres!";
 
+    public static final String CINEMA_ATR_NOME_VAZIO = "O Nome não pode estar branco!";
+    public static final String CINEMA_ATR_ENDERECO_VAZIO = "O endereço não pode estar branco!";
+    public static final String CINEMA_ATR_FUNCIONAMENTO_VAZIO = "O funcionamento não pode estar branco!";
+    public static final String CINEMA_ATR_SALAS_VAZIO = "As salas não podem estar branco!";
+    public static final String CINEMA_ATR_CNPJ_VAZIO = "O cnpj não pode estar branco!";
+
+    public static final String COMENTARIO_ATR_TEXTO_VAZIO = "O campo de texto não pode estar branco!";
+
+    public static final String AVALIACAO_ATR_PONTUACAO_VAZIO = "A pontuação não pode estra vazia";
+
+    public static final String SECAO_ATR_HORARIO_VAZIO = "O horário deve ser informado";
+    public static final String SECAO_ATR_INGRESSOS_VAZIO = "A quantidade de ingressos não pode estar vazia";
+    public static final String SECAO_ATR_SALA_VAZIO = "A sala deve ser informada";
+    public static final String SECAO_ATR_CODIGO_VAZIO = "O código da seção deve ser informado";
+
+
 }

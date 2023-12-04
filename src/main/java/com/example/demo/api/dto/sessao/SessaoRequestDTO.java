@@ -2,6 +2,7 @@ package com.example.demo.api.dto.sessao;
 
 import com.example.demo.domain.model.Cinema;
 import com.example.demo.domain.model.Filme;
+import com.example.demo.utils.RespostaDeAtributoPersonalizada;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,13 +19,13 @@ import java.util.List;
 public class SessaoRequestDTO {
 
     private Long idSessao;
-    @NotNull
+    @NotNull(message = RespostaDeAtributoPersonalizada.SECAO_ATR_HORARIO_VAZIO)
     private Date horario;
-    @NotNull
+    @NotNull(message = RespostaDeAtributoPersonalizada.SECAO_ATR_INGRESSOS_VAZIO)
     private int ingressos;
-    @NotNull
+    @NotNull(message = RespostaDeAtributoPersonalizada.SECAO_ATR_INGRESSOS_VAZIO)
     private int sala;
-    @NotNull
+    @NotNull(message = RespostaDeAtributoPersonalizada.SECAO_ATR_CODIGO_VAZIO)
     private int codSessao;
 
     // Relacionamentos
