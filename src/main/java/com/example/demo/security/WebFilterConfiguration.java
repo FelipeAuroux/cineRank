@@ -46,6 +46,8 @@ public class WebFilterConfiguration {
 		source.registerCorsConfiguration("/**", configuration);
 
 		return source;
+
+
 	}
 
 	@Bean
@@ -93,6 +95,9 @@ public class WebFilterConfiguration {
 				.requestMatchers(HttpMethod.GET, "/usuario/buscar/*").hasAuthority(Roles.ROLE_ADMIN.name())
 				.requestMatchers(HttpMethod.GET, "/usuario/listar-todos").hasAuthority(Roles.ROLE_ADMIN.name())
 				.requestMatchers(HttpMethod.DELETE, "/usuario/deletar/*").hasAuthority(Roles.ROLE_ADMIN.name())
+				// Swagger
+				.requestMatchers("/swagger-ui/*").permitAll()
+				.requestMatchers("/v3/api-docs").permitAll()
 				.anyRequest().authenticated());
 
 		http.addFilterBefore(this.interceptorFilter, UsernamePasswordAuthenticationFilter.class);
