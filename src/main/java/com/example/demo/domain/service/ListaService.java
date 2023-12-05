@@ -12,6 +12,7 @@ public interface ListaService {
     public List<Lista> listarTodasListas();
 
     public Lista buscarListaPorId(Long idLista);
+    public Lista buscarListaDoUsuarioPorId(Long idUsuario);
 
     public void deletarListaPorId(Long idLista);
 }

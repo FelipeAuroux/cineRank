@@ -10,6 +10,7 @@ public interface UsuarioService {
     public void deletarUsuarioPorId(Long idUsuario);
     public Usuario atualizarUsuarioPorId(Usuario usuario);
     public Usuario buscarUsuarioPorId(Long idUsuario);
+    public Usuario buscarUsuarioPorNomeDeUsuario(String nomeDeUsuario);
     public List<Usuario> listarTodosUsuarios();
 
 }

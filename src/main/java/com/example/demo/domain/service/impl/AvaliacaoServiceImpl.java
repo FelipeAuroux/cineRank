@@ -23,13 +23,17 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
     @Transactional(readOnly = false)
     @Override
     public Avaliacao salvarAvaliacao(Avaliacao avaliacao) {
-        if (repository.findByUsuarioId(avaliacao.getUsuario().getIdUsuario()).isEmpty()) {
-            Avaliacao avaliacaoSalva = repository.save(avaliacao);
-            Usuario usuario = usuarioRepository.findById(avaliacaoSalva.getUsuario().getIdUsuario()).orElseThrow(() -> new RegrasDeNegocioException("Não foi possível vincular o usuário para a avaliação, pois o id do usuário é inválido!"));
-            avaliacaoSalva.setUsuario(usuario);
-            return avaliacaoSalva;
+        if (!usuarioRepository.findById(avaliacao.getUsuario().getIdUsuario()).isEmpty()) {
+            if(repository.findByAvaliacaoIdUsuarioAndIdFilme(avaliacao.getUsuario().getIdUsuario(), avaliacao.getFilme().getIdFilme()).isEmpty()){
+                Avaliacao avaliacaoSalva = repository.save(avaliacao);
+                Usuario usuario = usuarioRepository.findById(avaliacaoSalva.getUsuario().getIdUsuario()).orElseThrow(() -> new RegrasDeNegocioException("Não foi possível vincular o usuário para a avaliação, pois o id do usuário é inválido!"));
+                avaliacaoSalva.setUsuario(usuario);
+                return avaliacaoSalva;
+            }else{
+                throw new RegrasDeNegocioException("O usuário de id " + avaliacao.getUsuario().getIdUsuario() + " já realizou uma avaliação sobre o filme de id " + avaliacao.getFilme().getIdFilme());
+            }
         } else {
-            throw new RegrasDeNegocioException("O usuário de id " + avaliacao.getUsuario().getIdUsuario() + " já realizou uma avaliação sobre o filme de id " + avaliacao.getFilme().getIdFilme());
+            throw new RegrasDeNegocioException("O usuário de id " + avaliacao.getUsuario().getIdUsuario() + " é inválido para fazer a avaliação sobre o filme de id " + avaliacao.getFilme().getIdFilme());
         }
     }
 

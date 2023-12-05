@@ -3,8 +3,10 @@ package com.example.demo.domain.service.impl;
 import com.example.demo.domain.domainException.RegrasDeNegocioException;
 import com.example.demo.domain.model.Filme;
 import com.example.demo.domain.model.Lista;
+import com.example.demo.domain.model.Usuario;
 import com.example.demo.domain.repository.FilmeRepository;
 import com.example.demo.domain.repository.ListaRepository;
+import com.example.demo.domain.repository.UsuarioRepository;
 import com.example.demo.domain.service.ListaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,18 +22,28 @@ public class ListaServiceImpl implements ListaService {
     private ListaRepository repository;
     @Autowired
     private FilmeRepository filmeRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Transactional(readOnly = false)
     @Override
     public Lista salvarLista(Lista lista) {
-        Lista listaSalva = repository.save(lista);
-        List<Filme> filmes = new ArrayList<Filme>();
-        for (int i = 0; i < listaSalva.getFilmes().size(); i++) {
-            filmes.add(filmeRepository.findById(listaSalva.getFilmes().get(i).getIdFilme())
-                    .orElseThrow(() -> new RegrasDeNegocioException("Você tentou adicionar um filme a sua lista com id inválido!")));
+        Usuario usuario = usuarioRepository.findById(lista.getUsuario().getIdUsuario()).orElseThrow(() -> new RegrasDeNegocioException("Não foi possível criar a lista para o usuário, pois seu id é invalido!"));
+        if (usuario.getLista() == null) {
+            // usuário não tem uma lista
+            List<Filme> filmes = new ArrayList<Filme>();
+            for (int i = 0; i < lista.getFilmes().size(); i++) {
+                filmes.add(filmeRepository.findById(lista.getFilmes().get(i).getIdFilme())
+                        .orElseThrow(() -> new RegrasDeNegocioException("Você tentou adicionar um filme a sua lista com id inválido!")));
+            }
+            Lista listaSalva = repository.save(lista);
+            listaSalva.setUsuario(usuario);
+            listaSalva.setFilmes(filmes);
+            return listaSalva;
+        }else{
+            // usuário já tem uma lista, não pode ter outra
+            throw new RegrasDeNegocioException("O usuário "+usuario.getNome()+" já tem uma lista criada em "+usuario.getLista().getAdicao()+"!");
         }
-        listaSalva.setFilmes(filmes);
-        return listaSalva;
     }
 
     @Transactional(readOnly = false)
@@ -50,6 +62,12 @@ public class ListaServiceImpl implements ListaService {
     @Override
     public Lista buscarListaPorId(Long idLista) {
         return repository.findById(idLista).orElseThrow(() -> new RegrasDeNegocioException("Não existe lista com id " + idLista + "!"));
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Lista buscarListaDoUsuarioPorId(Long idUsuario) {
+        return repository.findListaByIdUsuario(idUsuario).orElseThrow(() -> new RegrasDeNegocioException("Não existe uma lista para o usuário de id "+idUsuario));
     }
 
     @Transactional(readOnly = false)
