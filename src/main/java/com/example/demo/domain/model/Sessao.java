@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.transaction.support.ResourceHolderSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -16,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Sessao {
+public class Sessao extends ResourceHolderSupport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
