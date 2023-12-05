@@ -64,19 +64,35 @@ public class WebFilterConfiguration {
 		http.authorizeHttpRequests((auth) -> auth
 				// Login Controller
 				.requestMatchers(HttpMethod.POST, "/login/*").permitAll()
-				// Email Controller
-				.requestMatchers(HttpMethod.GET, "/email/confirmation/*").permitAll()
-				// Recover Account Controller
-				.requestMatchers(HttpMethod.GET, "/recover/recover-account/*").permitAll()
-				.requestMatchers(HttpMethod.POST, "/recover/new-password").permitAll()
-				// User Controller
-				.requestMatchers(HttpMethod.POST, "/user/new").permitAll()
-				.requestMatchers(HttpMethod.GET, "/user/find/*").hasAuthority(Roles.ROLE_USER.name())
-				// Post Controller
-				.requestMatchers(HttpMethod.POST, "/posts/new").hasAuthority(Roles.ROLE_ADMIN.name()) // Apenas usuários administradores podem postar
-				.requestMatchers(HttpMethod.GET, "/posts/all").hasAuthority(Roles.ROLE_USER.name())
-				.requestMatchers(HttpMethod.GET, "/posts/page/*").hasAuthority(Roles.ROLE_USER.name())
-				.requestMatchers(HttpMethod.GET, "/posts/read-post/*").hasAuthority(Roles.ROLE_USER.name())
+//				// Avaliacao Controller
+				.requestMatchers(HttpMethod.POST, "/avaliacao/novo").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET, "/avaliacao/listar-todas").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.DELETE, "/deletar/*").hasAuthority(Roles.ROLE_ADMIN.name())
+				// Cinema Controller
+				.requestMatchers(HttpMethod.POST, "/cinema/novo").hasAuthority(Roles.ROLE_ADMIN.name())
+				.requestMatchers(HttpMethod.GET, "/cinema/listar-todos").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.DELETE, "/deletar-cinema/*").hasAuthority(Roles.ROLE_ADMIN.name())
+				// Comentario Controller
+				.requestMatchers(HttpMethod.POST, "/comentario/comentar").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET, "/comentario/listar-comentarios").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.DELETE, "/deletar-comentario/*").hasAuthority(Roles.ROLE_ADMIN.name())
+				// Filme Controller
+				.requestMatchers(HttpMethod.POST, "/filmes/novo").hasAuthority(Roles.ROLE_ADMIN.name())
+				.requestMatchers(HttpMethod.GET, "/filmes/listar").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.DELETE, "/filmes/deletar/*").hasAuthority(Roles.ROLE_ADMIN.name())
+				// Lista Controller
+				.requestMatchers(HttpMethod.POST, "/lista/novo").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET, "/lista/listar/*").hasAuthority(Roles.ROLE_USER.name())
+				// Sessao Controller
+				.requestMatchers(HttpMethod.POST, "/sessao/novo").hasAuthority(Roles.ROLE_ADMIN.name())
+				.requestMatchers(HttpMethod.GET, "/sessao/listar-todas").hasAuthority(Roles.ROLE_USER.name())
+				.requestMatchers(HttpMethod.DELETE, "/sessao/deletar-sessao/*").hasAuthority(Roles.ROLE_ADMIN.name())
+				// Usuario Controller
+				.requestMatchers(HttpMethod.POST, "/usuario/novo").permitAll()
+				.requestMatchers(HttpMethod.PUT, "/usuario/atualizar").hasAuthority(Roles.ROLE_ADMIN.name())
+				.requestMatchers(HttpMethod.GET, "/usuario/buscar/*").hasAuthority(Roles.ROLE_ADMIN.name())
+				.requestMatchers(HttpMethod.GET, "/usuario/listar-todos").hasAuthority(Roles.ROLE_ADMIN.name())
+				.requestMatchers(HttpMethod.DELETE, "/usuario/deletar/*").hasAuthority(Roles.ROLE_ADMIN.name())
 				.anyRequest().authenticated());
 
 		http.addFilterBefore(this.interceptorFilter, UsernamePasswordAuthenticationFilter.class);

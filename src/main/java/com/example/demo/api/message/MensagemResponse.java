@@ -12,6 +12,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MensagemResponse {
+
+    public MensagemResponse(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
     private String mensagem;
-    private Date data;
+    private Date data = new Date();
 }

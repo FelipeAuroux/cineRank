@@ -51,6 +51,10 @@ public class Usuario implements UserDetails {
     @CPF
     @Column(unique = true)
     private String cpf;
+    @NotNull
+    private int tentativasDeLogin;
+    private Date dataDeLiberacao;
+    private String token;
     @Enumerated
     @NotNull
     private Roles role;

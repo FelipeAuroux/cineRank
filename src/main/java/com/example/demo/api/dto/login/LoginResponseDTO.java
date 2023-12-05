@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class LoginResponseDTO {
 
-    private Long idUser;
+    private Long idUsuario;
     private String token;
     private Roles role;
 }
