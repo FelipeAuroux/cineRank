@@ -64,6 +64,12 @@ public class ListaServiceImpl implements ListaService {
         return repository.findById(idLista).orElseThrow(() -> new RegrasDeNegocioException("Não existe lista com id " + idLista + "!"));
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public Lista buscarListaDoUsuarioPorId(Long idUsuario) {
+        return repository.findListaByIdUsuario(idUsuario).orElseThrow(() -> new RegrasDeNegocioException("Não existe uma lista para o usuário de id "+idUsuario));
+    }
+
     @Transactional(readOnly = false)
     @Override
     public void deletarListaPorId(Long idLista) {
