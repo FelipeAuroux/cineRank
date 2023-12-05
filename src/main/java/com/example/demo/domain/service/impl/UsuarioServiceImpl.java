@@ -6,7 +6,10 @@ import com.example.demo.domain.model.Usuario;
 import com.example.demo.domain.repository.EnderecoRepository;
 import com.example.demo.domain.repository.UsuarioRepository;
 import com.example.demo.domain.service.UsuarioService;
+import com.example.demo.security.jwt.JwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +23,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Transactional(readOnly = false)
     @Override
     public Usuario criarNovoUsuario(Usuario usuario) {
@@ -30,6 +35,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         } else {
             Endereco endereco = usuario.getEndereco();
             usuario.setEndereco(null);
+            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+            //String firstTokenUser = JwtToken.generateTokenJWT(usuario);
+            //usuario.setToken(firstTokenUser);
             Usuario usuarioSalvo = repository.save(usuario);
             endereco.setUsuario(usuarioSalvo);
             Endereco enderecoSalvo = enderecoRepository.save(endereco);
@@ -60,6 +68,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario buscarUsuarioPorId(Long idUsuario) {
         return repository.findById(idUsuario).orElseThrow(() -> new RegrasDeNegocioException("Não existe usuário com id " + idUsuario));
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorNomeDeUsuario(String nomeDeUsuario) {
+        return repository.findByUsuario(nomeDeUsuario).orElseThrow(() -> new RegrasDeNegocioException("Username "+nomeDeUsuario+" não existe!"));
     }
 
     @Transactional(readOnly = true)
