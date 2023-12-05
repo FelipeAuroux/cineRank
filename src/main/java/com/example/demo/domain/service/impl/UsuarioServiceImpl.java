@@ -7,6 +7,7 @@ import com.example.demo.domain.repository.EnderecoRepository;
 import com.example.demo.domain.repository.UsuarioRepository;
 import com.example.demo.domain.service.UsuarioService;
 import com.example.demo.security.jwt.JwtToken;
+import com.example.demo.utils.ValidadorDeSenhas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,6 +39,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             // Existe
             throw new RegrasDeNegocioException("O usuário com cpf " + usuario.getCpf() + " já está cadastrado em nosso sistema!");
         } else {
+            ValidadorDeSenhas.isStrong(usuario.getSenha());
             Endereco endereco = usuario.getEndereco();
             usuario.setEndereco(null);
             usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
